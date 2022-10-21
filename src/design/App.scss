@@ -1,0 +1,93 @@
+// Bootstrap manually adds
+$gray-blue: #0b3864;
+$gray-green: #202b25;
+$gradient: linear-gradient(180deg,
+  rgba($gray-blue, 0.75),
+  rgba($gray-green, 40));
+
+$theme-colors: ("primary": darkblue,
+  "danger": darkred,
+  "info": teal,
+  // 'my-black': rgb(35, 35, 35),
+  // 'my-gray': rgb(110, 110, 110),
+  // 'my-white': rgb(224, 224, 224),,,
+);
+// $warning: orange;
+
+// width height
+$sizes: () !default;
+$sizes: map-merge(
+  (
+    10: 10%,
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto
+  ),
+  $sizes
+);
+
+// margin padding gap
+$spacer: 1rem;
+$spacers: (4bis: ($spacer * 2,
+  ),
+  6: ($spacer * 6,
+  ),
+);
+
+$grid-breakpoints: (
+      xs: 0,
+      smbis: 390px, //little mobile
+      sm: 576px,
+      md: 768px,
+      lg: 992px,
+      xl: 1200px,
+      xxl: 1400px,
+);
+
+// Breakpoints base for make width & height each 5%
+$i: 0;
+@while $i < 100 {
+	$val: auto;
+	$k: $val;
+	@if $i != 0 {
+		$val: unquote(($i)+'%');
+		$k: $i;
+	}
+	.w-#{$k}{
+		width: $val;
+	}
+	.h-#{$k}{
+		height: $val;
+	}
+	$i: $i + 5;
+}
+
+@each $key, $size in $grid-breakpoints {
+	@media (min-width: $size) {
+		$i: 0;
+		@while $i <= 100 {
+			$val: auto;
+			$k: $val;
+			@if $i != 0 {
+				$val: unquote(($i)+'%');
+				$k: $i;
+			}
+
+			.w-#{$key}-#{$k}{
+				width: $val;
+			}
+			.h-#{$key}-#{$k}{
+				height: $val;
+			}
+			$i: $i + 5;
+		}
+	}
+}
+
+// .fa-li {
+//     color: $primary
+// }
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
